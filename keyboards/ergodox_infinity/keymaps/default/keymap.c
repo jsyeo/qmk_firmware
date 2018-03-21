@@ -11,7 +11,9 @@ enum custom_keycodes {
   PLACEHOLDER = SAFE_RANGE, // can always be here
   EPRM,
   VRSN,
-  RGB_SLD
+  RGB_SLD,
+  ERR_NIL,
+  SHRUG
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -38,26 +40,56 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 // If it accepts an argument (i.e, is a function), it doesn't need KC_.
 // Otherwise, it needs KC_*
+//
+//
+ 
 [BASE] = LAYOUT_ergodox(  // layer 0 : default
         // left hand
-        KC_EQL,         KC_1,         KC_2,   KC_3,   KC_4,   KC_5,   KC_LEFT,
-        KC_DELT,        KC_Q,         KC_W,   KC_E,   KC_R,   KC_T,   TG(SYMB),
-        KC_BSPC,        KC_A,         KC_S,   KC_D,   KC_F,   KC_G,
-        KC_LSFT,        CTL_T(KC_Z),  KC_X,   KC_C,   KC_V,   KC_B,   ALL_T(KC_NO),
-        LT(SYMB,KC_GRV),KC_QUOT,      LALT(KC_LSFT),  KC_LEFT,KC_RGHT,
-                                              ALT_T(KC_APP),  KC_LGUI,
-                                                              KC_HOME,
-                                               KC_SPC,KC_BSPC,KC_END,
+        KC_TILD,        KC_1,         KC_2,    KC_3,           KC_4,          KC_5,   KC_MINS,
+        KC_TAB,         KC_Q,         KC_W,    KC_E,           KC_R,          KC_T,   TG(SYMB),
+        KC_ESC,         KC_A,         KC_S,    KC_D,           KC_F,          KC_G,
+        KC_LSPO,        CTL_T(KC_Z),  KC_X,    KC_C,           KC_V,          KC_B,   ALL_T(KC_NO),
+        CTL_T(KC_LBRC), KC_QUOT,      KC_PIPE, ALT_T(KC_MINS), GUI_T(KC_EQL),
+
+                                              // left thumb cluster
+                                              LCTL(LALT(KC_O)), LGUI(LSFT(KC_A)),
+                                                                ERR_NIL,
+                                              KC_SPC, KC_BSPC,  KC_END,
+
         // right hand
-             KC_RGHT,     KC_6,   KC_7,  KC_8,   KC_9,   KC_0,             KC_MINS,
-             TG(SYMB),    KC_Y,   KC_U,  KC_I,   KC_O,   KC_P,             KC_BSLS,
-                          KC_H,   KC_J,  KC_K,   KC_L,   LT(MDIA, KC_SCLN),GUI_T(KC_QUOT),
-             MEH_T(KC_NO),KC_N,   KC_M,  KC_COMM,KC_DOT, CTL_T(KC_SLSH),   KC_RSFT,
-                                  KC_UP, KC_DOWN,KC_LBRC,KC_RBRC,          KC_FN1,
-             KC_LALT,        CTL_T(KC_ESC),
-             KC_PGUP,
-             KC_PGDN,KC_TAB, KC_ENT
+             KC_EQL,      KC_6,   KC_7,  KC_8,   KC_9,   KC_0,     KC_BSPC,
+             TG(SYMB),    KC_Y,   KC_U,  KC_I,   KC_O,   KC_P,     KC_BSLS,
+                          KC_H,   KC_J,  KC_K,   KC_L,   KC_SCLN,  KC_QUOT,
+             TG(MDIA),KC_N,   KC_M,  KC_COMM,KC_DOT, KC_SLSH,  KC_RSPC,
+                                  KC_LEFT, KC_DOWN,KC_UP,KC_RIGHT, CTL_T(KC_RBRC),
+
+        // right thumb cluster
+             LGUI(LALT(KC_BSLS)), LALT(LGUI(KC_L)),
+             SHRUG,
+             KC_PGDN, KC_ENT, KC_SPC
     ),
+
+//[BASE] = LAYOUT_ergodox(  // layer 0 : default
+//        // left hand
+//        KC_EQL,         KC_1,         KC_2,   KC_3,   KC_4,   KC_5,   KC_LEFT,
+//        KC_DELT,        KC_Q,         KC_W,   KC_E,   KC_R,   KC_T,   TG(SYMB),
+//        KC_BSPC,        KC_A,         KC_S,   KC_D,   KC_F,   KC_G,
+//        KC_LSPO,        CTL_T(KC_Z),  KC_X,   KC_C,   KC_V,   KC_B,   ALL_T(KC_NO),
+//        CTL_T(KC_LBRC),KC_QUOT,      LALT(KC_LSFT),  KC_LEFT,KC_RGHT,
+//                                              ALT_T(KC_APP),  KC_LGUI,
+//                                                              KC_HOME,
+//                                               KC_SPC,KC_BSPC,KC_END,
+//        // right hand
+//             KC_RGHT,     KC_6,   KC_7,  KC_8,   KC_9,   KC_0,             KC_MINS,
+//             TG(SYMB),    KC_Y,   KC_U,  KC_I,   KC_O,   KC_P,             KC_BSLS,
+//                          KC_H,   KC_J,  KC_K,   KC_L,   LT(MDIA, KC_SCLN),GUI_T(KC_QUOT),
+//             MEH_T(KC_NO),KC_N,   KC_M,  KC_COMM,KC_DOT, CTL_T(KC_SLSH),   KC_RSFT,
+//                                  KC_UP, KC_DOWN,KC_LBRC,KC_RBRC,          KC_FN1,
+//             KC_LALT,        CTL_T(KC_ESC),
+//             KC_PGUP,
+//             KC_PGDN,KC_TAB, KC_ENT
+//    ),
+
 /* Keymap 1: Symbol Layer
  *
  * ,---------------------------------------------------.           ,--------------------------------------------------.
@@ -126,7 +158,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
        KC_TRNS, KC_TRNS, KC_TRNS, KC_MS_U, KC_TRNS, KC_TRNS, KC_TRNS,
        KC_TRNS, KC_TRNS, KC_MS_L, KC_MS_D, KC_MS_R, KC_TRNS,
-       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, TG(MDIA),
        KC_TRNS, KC_TRNS, KC_TRNS, KC_BTN1, KC_BTN2,
                                            KC_TRNS, KC_TRNS,
                                                     KC_TRNS,
@@ -188,6 +220,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
+    case ERR_NIL:
+      if (record->event.pressed) {
+        SEND_STRING("if err != nil {\n\treturn err\n}\n"); // i love u, command pike!
+      }
+      return false;
+      break;
+    case SHRUG:
+      if (record->event.pressed) {
+        SEND_STRING("\xc2\xaf\\_(\xe3\x83\x84)_/\xc2\xaf");
+      }
+      return false;
+      break;
   }
   return true;
 }
@@ -221,3 +265,4 @@ void matrix_scan_user(void) {
     }
 
 };
+
